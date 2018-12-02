@@ -22,6 +22,7 @@ function init() {
             lastPage: 0
         },
         mounted() {
+            Vue.use(VueMaterial.default)
             console.log('Oui');
             console.log("AVANT AFFICHAGE");
             this.getRestaurantsFromServer();
@@ -33,7 +34,7 @@ function init() {
                 } else if (this.page > this.lastPage) {
                     this.page = this.lastPage;
                 }
-                
+
                 let url = "http://localhost:8080/api/restaurants?page=" +
                     this.page + "&pagesize=" +
                     this.pagesize + "&name=" +
@@ -110,7 +111,7 @@ function init() {
             },
             chercherRestaurants: _.debounce(function () {
                 this.getRestaurantsFromServer();
-            }, 500)
+            }, 300)
         }
     })
 }

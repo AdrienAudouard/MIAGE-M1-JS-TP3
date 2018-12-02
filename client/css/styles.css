@@ -28,3 +28,24 @@ input:valid {
 .bordureRouge {
     border: 2px dashed red;
 }
+
+#add-card {
+    width: 320px;
+    margin: 4px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.md-field {
+    margin: 4px 0 7px !important;
+    min-height: 0px;
+}
+
+.md-primary {
+    color: white;
+    background: #3498db;
+}
+
+#app {
+    padding: 10px;
+}

@@ -6,34 +6,49 @@
     <meta name="viewport" content="width=device-width">
     <script src="lib/vue.min.js"></script>
     <script src="lib/lodash.min.js"></script>
+    <script src="lib/vue-material/vue-material.min.js"></script>
     <script src="js/script.js"></script>
+    <link rel="stylesheet" href="lib/vue-material/vue-material.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <title>JS Bin</title>
 </head>
 
 <body>
     <div id="app">
-        <form v-on:submit="ajouterRestaurant">
-            <label>
-                Nom : <input type="text" name="nom" required v-model="nom">
-            </label>
-            <label>
-                Cuisine : <input type="text" name="cuisine" required v-model="cuisine">
-            </label>
-
-            <button>Ajouter</button>
-        </form>
+            <md-toolbar class="md-primary">
+                    <h3 class="md-title">Nombre de restaurants : {{nbRestaurants}}</h3>
+                  </md-toolbar>
+        <md-card id="add-card">
+            <md-card-header>
+                <div class="md-title">Ajouter un restaurant</div>
+            </md-card-header>
+            <md-card-content>
+                <md-field>
+                    <label>Nom</label>
+                    <md-input v-model="nom" name="nom" type="text" required></md-input>
+                </md-field>
+                <md-field>
+                    <label>Cuisine</label>
+                    <md-input type="text" name="cuisine" required v-model="cuisine"></md-input>
+                </md-field>
+            </md-card-content>
+            <md-card-actions>
+                <md-button v-on:click="ajouterRestaurant">Ajouter</md-button>
+            </md-card-actions>
+        </md-card>
+        <md-card id="add-card">
+            <md-card-header>
+                <div class="md-title">Rechercher un restaurant</div>
+            </md-card-header>
+            <md-card-content>
+                <md-field>
+                    <label>Recherche</label>
+                    <md-input type="text" v-on:input="chercherRestaurants" v-model="name"></md-input>
+                </md-field>
+            </md-card-content>
+        </md-card>
         <p>
-            <label>
-            Recherche : 
-            <input type="text" 
-                   v-on:input="chercherRestaurants"
-                   v-model="name"
-            >
-            </label>
         </p>
-<h1>Nombre de restaurants : {{nbRestaurants}}</h1>
-<p>Page courante: {{ page }}</p>
         <table>
             <tr>
                 <th>Nom</th>
@@ -47,12 +62,28 @@
                 </tr>
             </tbody>
         </table>
-        <button v-on:click="pagePrecedente">Précédent</button>
-        <button v-on:click="premierePage">0</button>
-        <button v-on:click="dernierePage">{{ lastPage }}</button>
-        <button v-on:click="pageSuivante">Suivant</button>
+        <md-button class="md-primary" v-on:click="pagePrecedente">Précédent</md-button>
+        <md-button class="md-primary" v-on:click="premierePage">0</md-button>
+        <md-button class="md-primary">{{ page }}</md-button>
+        <md-button class="md-primary" v-on:click="dernierePage">{{ lastPage }}</md-button>
+        <md-button class="md-primary" v-on:click="pageSuivante">Suivant</md-button>
     </div>
 
 </body>
+<script>
+    export default {
+        name: 'TextFields',
+        data: () => ({
+            initial: 'Initial Value',
+            type: null,
+            withLabel: null,
+            inline: null,
+            number: null,
+            textarea: null,
+            autogrow: null,
+            disabled: null
+        })
+    }
+</script>
 
 </html>
