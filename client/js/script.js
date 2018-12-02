@@ -19,10 +19,12 @@ function init() {
             page:0,
             pagesize:10,
             name:"",
-            lastPage: 0
+            lastPage: 0,
+            percent: 0,
         },
         mounted() {
             Vue.use(VueMaterial.default)
+
             console.log('Oui');
             console.log("AVANT AFFICHAGE");
             this.getRestaurantsFromServer();
@@ -47,6 +49,7 @@ function init() {
                                 this.restaurants = reponseJS.data;
                                 this.nbRestaurants = reponseJS.count;
                                 this.lastPage = Math.floor(this.nbRestaurants / this.pagesize);
+                                this.percent = (this.page / this.lastPage) * 100;
                                 console.log(reponseJS.msg);
                             });
                     })
@@ -61,12 +64,10 @@ function init() {
                 // eviter le comportement par defaut
                 event.preventDefault();
 
-                // Récupération du contenu du formulaire pour envoi en AJAX au serveur
-                // 1 - on récupère le formulaire
-                let form = event.target;
-
                 // 2 - on récupère le contenu du formulaire
-                let dataFormulaire = new FormData(form);
+                let dataFormulaire = new FormData();
+                dataFormulaire.append('nom', this.nom);
+                dataFormulaire.append('cuisine', this.cuisine);
 
                 // 3 - on envoie une requête POST pour insertion sur le serveur
                 let url = "http://localhost:8080/api/restaurants";

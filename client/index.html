@@ -15,9 +15,9 @@
 
 <body>
     <div id="app">
-            <md-toolbar class="md-primary">
-                    <h3 class="md-title">Nombre de restaurants : {{nbRestaurants}}</h3>
-                  </md-toolbar>
+        <md-toolbar class="md-primary">
+            <h3 class="md-title">Nombre de restaurants : {{nbRestaurants}}</h3>
+        </md-toolbar>
         <md-card id="add-card">
             <md-card-header>
                 <div class="md-title">Ajouter un restaurant</div>
@@ -31,6 +31,7 @@
                     <label>Cuisine</label>
                     <md-input type="text" name="cuisine" required v-model="cuisine"></md-input>
                 </md-field>
+
             </md-card-content>
             <md-card-actions>
                 <md-button v-on:click="ajouterRestaurant">Ajouter</md-button>
@@ -64,26 +65,11 @@
         </table>
         <md-button class="md-primary" v-on:click="pagePrecedente">Précédent</md-button>
         <md-button class="md-primary" v-on:click="premierePage">0</md-button>
-        <md-button class="md-primary">{{ page }}</md-button>
+        <md-button>{{ page }}</md-button>
         <md-button class="md-primary" v-on:click="dernierePage">{{ lastPage }}</md-button>
         <md-button class="md-primary" v-on:click="pageSuivante">Suivant</md-button>
     </div>
 
 </body>
-<script>
-    export default {
-        name: 'TextFields',
-        data: () => ({
-            initial: 'Initial Value',
-            type: null,
-            withLabel: null,
-            inline: null,
-            number: null,
-            textarea: null,
-            autogrow: null,
-            disabled: null
-        })
-    }
-</script>
 
 </html>
