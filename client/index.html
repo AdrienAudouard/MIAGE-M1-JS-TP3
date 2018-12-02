@@ -33,6 +33,7 @@
             </label>
         </p>
 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
+<p>Page courante: {{ page }}</p>
         <table>
             <tr>
                 <th>Nom</th>
@@ -47,7 +48,8 @@
             </tbody>
         </table>
         <button v-on:click="pagePrecedente">Précédent</button>
-        <button v-on:click="pageSuivante">1</button>
+        <button v-on:click="premierePage">0</button>
+        <button v-on:click="dernierePage">{{ lastPage }}</button>
         <button v-on:click="pageSuivante">Suivant</button>
     </div>
 

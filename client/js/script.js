@@ -18,7 +18,8 @@ function init() {
             nbRestaurants:0,
             page:0,
             pagesize:10,
-            name:""
+            name:"",
+            lastPage: 0
         },
         mounted() {
             console.log('Oui');
@@ -29,7 +30,10 @@ function init() {
             getRestaurantsFromServer() {
                 if (this.page < 0) {
                     this.page = 0;
+                } else if (this.page > this.lastPage) {
+                    this.page = this.lastPage;
                 }
+                
                 let url = "http://localhost:8080/api/restaurants?page=" +
                     this.page + "&pagesize=" +
                     this.pagesize + "&name=" +
@@ -41,6 +45,7 @@ function init() {
                             .then((reponseJS) => {
                                 this.restaurants = reponseJS.data;
                                 this.nbRestaurants = reponseJS.count;
+                                this.lastPage = Math.floor(this.nbRestaurants / this.pagesize);
                                 console.log(reponseJS.msg);
                             });
                     })
@@ -88,7 +93,11 @@ function init() {
                 return (index % 2) ? 'lightBlue' : 'pink';
             },
             premierePage() {
-                this.page++;
+                this.page =  0;
+                this.getRestaurantsFromServer();
+            },
+            dernierePage() {
+                this.page = this.nbRestaurants / this.pagesize;
                 this.getRestaurantsFromServer();
             },
             pageSuivante() {
